@@ -1,8 +1,10 @@
 import React from 'react';
-import { Form, Input } from 'antd'
-import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from "@ant-design/icons";
+import { Form, Input, Icon } from 'antd'
+// import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from "@ant-design/icons";
 import { Link } from 'react-router-dom'
 import { Button, Block } from '../../../components'
+import {validateField} from "../../../utils/helpers"
+
 
 const success = false;
 const RegisterForm = props => {
@@ -14,7 +16,7 @@ const RegisterForm = props => {
     handleBlur,
     handleSubmit,
     isValid,
-    dirty,
+    isSubmitting
   } = props;
 
   return (
@@ -26,16 +28,14 @@ const RegisterForm = props => {
       <Block>
         {!success ? (
           <Form onSubmit={handleSubmit} className="login-form">
-            <Form.Item validateStatus={
-              !touched.email? '': errors.email ? 'error' : 'success'
-            }
-              help={ !touched.email? '': errors.email}
-             hasFeedback>
+            <Form.Item validateStatus={validateField("email", touched, errors)}
+              help={!touched.email ? "" : errors.email}
+              hasFeedback>
 
               <Input
-              id="email"
+                id="email"
                 prefix={
-                  <MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                  < Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 size="large"
                 placeholder="Email"
@@ -47,25 +47,21 @@ const RegisterForm = props => {
             <Form.Item>
               <Input
                 prefix={
-                  <UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 size="large"
                 type="user"
                 placeholder="Ваше имя"
               />
             </Form.Item>
-            <Form.Item
-            validateStatus={
-              !touched.password? '': errors.password ? 'error' : 'success'
-            }
-            help={ !touched.password? '': errors.password}
-
-            hasFeedback
+            <Form.Item validateStatus={validateField("password", touched, errors)}
+              help={!touched.password ? "" : errors.password}
+              hasFeedback
             >
               <Input
-              id="password"
+                id="password"
                 prefix={
-                  <LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 size="large"
                 type="password"
@@ -74,19 +70,19 @@ const RegisterForm = props => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </Form.Item> 
+            </Form.Item>
             <Form.Item>
               <Input
                 prefix={
-                  <LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 size="large"
-                type="password"
+                type="password2"
                 placeholder="Повторите пароль"
               />
             </Form.Item>
             <Form.Item>
-              {dirty && !isValid && <span>Ошибка</span>}
+              {isSubmitting && !isValid && <span>Ошибка</span>}
               <Button onClick={handleSubmit} type="primary" size="large">
                 Зарегистрироваться
               </Button>
@@ -98,12 +94,12 @@ const RegisterForm = props => {
 
           </Form>
         ) : (
-            <div className="auth__success-block">
-              <div><InfoCircleTwoTone style={{ size: "50px" }} /></div>
-              <h2>Подтвердите свой аккаунт</h2>
-              <p>На вашу почту отправлено письмо с ссылкой на подтверждение аккаунта</p>
-            </div>
-          )}
+          <div className="auth__success-block">
+            <div><Icon type="user" style={{ size: "50px" }} /></div>
+            <h2>Подтвердите свой аккаунт</h2>
+            <p>На вашу почту отправлено письмо с ссылкой на подтверждение аккаунта</p>
+          </div>
+        )}
 
       </Block>
     </div>
