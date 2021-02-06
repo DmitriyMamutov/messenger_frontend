@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
-import {IconReaded } from "../";
+import {IconReaded, Avatar } from "../";
+import { format, isToday } from "date-fns";
+import {generateAvatar} from '../../utils/helpers'
 
 import "./DialogItem.scss";
-import { format, isToday } from "date-fns";
-
 const getMessageTime = created_at => {
   if(isToday(created_at)){
     return format(
@@ -16,18 +16,6 @@ const getMessageTime = created_at => {
   }
 }
 
-const getAvatar = avatar => {
-  if (avatar) {
-    return (
-      <img
-        src="https://pp.userapi.com/c846017/v846017841/18957c/1iVH9FKXi4E.jpg?ava=1"
-        alt=""
-      />
-    );
-  } else {
-    // make avatar
-  }
-};
 
 const DialogItem = ({ user, text, created_at, unreaded, isMe }) => (
   <div
@@ -36,8 +24,7 @@ const DialogItem = ({ user, text, created_at, unreaded, isMe }) => (
     })}
   >
     <div className="dialogs__item-avatar">
-     
-      {getAvatar(user.avatar)}
+     <Avatar user={user}/>
     </div>
     <div className="dialogs__item-info">
       <div className="dialogs__item-info-top">
