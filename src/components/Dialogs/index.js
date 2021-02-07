@@ -1,10 +1,18 @@
 import React from "react";
 import { DialogItem } from '../'
 import orderBy from 'lodash/orderBy'
+import {Input} from "antd";
 import "./Dialogs.scss";
 
-const Dialogs = ({ items, userId }) => (
+const Dialogs = ({ items, userId, onSearch, inputValue }) => (
   <div className="dialogs">
+     <div className="dialogs__search">
+            <Input.Search 
+              value={inputValue}
+               placeholder="Поиск среди контактов"
+               onChange={e => onSearch(e.target.value)}
+               />
+         </div>
     {orderBy (items, ["created_at"], ["desc"]).map(item => (
       <DialogItem
       key={item._id}
