@@ -1,9 +1,10 @@
 import React from 'react';
 import {Icon, Input, Button} from 'antd'
-import {Messages, Status, ChatInput} from "../../components"
-import {Dialogs} from "../../containers";
-import dialogsJSON from '../../dialogs.json'
+import { Status, ChatInput} from "../../components"
+import {Dialogs, Messages} from "../../containers";
+
 import "./Home.scss"
+
 const Home = () => (
 <section className="home">
    <div className="chat">
@@ -20,7 +21,7 @@ const Home = () => (
          <div className="chat__sidebar-dialogs">
          <Dialogs
          userId={0}
-         items={dialogsJSON} /> 
+          /> 
          </div>
       </div> 
       <div className="chat__dialog">

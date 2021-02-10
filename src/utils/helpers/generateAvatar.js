@@ -12,12 +12,12 @@ export default hash=> {
   .map(char=> getCorrectIndex(char.charCodeAt(0)));
   return {
     color: tinycolor({r,g,b})
-    .lighten(40)
-    .saturate(50)
+    .lighten(20)
+    .saturate(40)
     .toHexString(),
     colorLighten: tinycolor({r,g,b})
-    .lighten(55)
-    .saturate(65)
+    .lighten(25)
+    .saturate(50)
     .toHexString()
   };
 }

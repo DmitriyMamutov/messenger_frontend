@@ -22,7 +22,7 @@ const LoginForm = props => {
   return (
     <div>
       <div className="auth__top">
-        <h2>Войти в аакаунт</h2>
+        <h2>Войти в аккаунт</h2>
         <p>Пожалуйста войдите в свой аккаунт</p>
       </div>
       <Block>

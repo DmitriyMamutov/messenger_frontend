@@ -1,21 +1,41 @@
 import React, {useState} from 'react';
 import {Button, Input} from 'antd'
 import PropTypes from "prop-types";
+import { UploadField } from "@navjobs/upload";
+import { Picker } from 'emoji-mart'
 import './ChatInput.scss'
-import classNames from 'classnames'
+
 
 const ChatInput = props => {
    const[value, setValue] = useState('');
+   const[emojiPickerVisible, setShowEmojiPicker] = useState(false);
+
+   const toggleEmojiPicker = () => {
+    setShowEmojiPicker(!emojiPickerVisible)
+   }
   
   return(
     <div className="chat-input">
     <div className="chat-input__smile-btn">
-      <Button type="link" shape="circle" icon="smile" />
+  { emojiPickerVisible && (  <div className="chat-input__emoji-picker">
+          <Picker set='twitter' />
+        </div> )}
+      <Button onClick={toggleEmojiPicker} type="link" shape="circle" icon="smile" />
     </div>
      <Input onChange={e => setValue(e.target.value)} size="large" placeholder="Введите текст сообщения"/>
    <div className="chat-input__actions">
-   <Button type="link" shape="circle" icon="camera" />
-     {/* <Icon type="audio"/> */}
+   <UploadField
+              onFiles={files=>console.log(files)}
+              containerProps={{
+                className: "chat-input__actions-upload-btn"
+              }}
+              uploadProps={{
+                accept: ".jpg,.jpeg,.png,.gif,.bmp",
+                multiple: "multiple"
+              }}
+            >
+              <Button type="link" shape="circle" icon="paper-clip" />
+            </UploadField>
      {value ?
       <Button type="link" shape="circle" icon="right-circle"/>
       :

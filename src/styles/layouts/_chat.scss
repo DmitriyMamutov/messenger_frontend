@@ -32,19 +32,15 @@
   
     &-dialogs{
       height: calc(100% - 136px);
-      overflow: auto;
+      // overflow: auto;
+     
       .dialogs{
         height: 100%;
         overflow: auto;  
         &__item{
           padding: 10px 20px; 
-          margin-bottom: 0;
+          margin-bottom: 0px;
           cursor: pointer;
-
-          &:active,
-          &:hover{
-             background-color: #f3f7ff;
-          }
          
         }
         
@@ -82,10 +78,17 @@
     }
 
     &-messages{
-      padding: 20px;
-      padding-bottom: 0;
-      overflow: auto;
+      // padding: 20px;
+      // padding-bottom: 0;
+      // overflow: auto;
       height: calc(100% - 138px);
+
+      &-empty{
+        position: relative;
+        text-align: center;
+        top: 50%;
+        opacity: 0.4;
+      }
 
     }
   }

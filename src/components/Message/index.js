@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames"
-import { Time, IconReaded } from '../'
+import { Time, IconReaded, Avatar } from '../'
 import wave from '../../assets/img/wave.svg'
 import pause from '../../assets/img/pause.svg'
 import play from '../../assets/img/play.svg'
@@ -100,7 +100,7 @@ const Message = ({
             <div className="message__content">
                 <IconReaded isMe={isMe} isReaded={isReaded} />
                 <div className="message__avatar">
-                    <img src={avatar} alt={`Avatar ${user.fullname}`} />
+                    <Avatar user={user} />
                 </div>
                 <div className="message__info">
                     <div>

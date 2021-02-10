@@ -4,7 +4,7 @@ import orderBy from 'lodash/orderBy'
 import {Input} from "antd";
 import "./Dialogs.scss";
 
-const Dialogs = ({ items, userId, onSearch, inputValue }) => (
+const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog, currentDialogId }) => (
   <div className="dialogs">
      <div className="dialogs__search">
             <Input.Search 
@@ -13,14 +13,16 @@ const Dialogs = ({ items, userId, onSearch, inputValue }) => (
                onChange={e => onSearch(e.target.value)}
                />
          </div>
-    {orderBy (items, ["created_at"], ["desc"]).map(item => (
+    {items.length ? orderBy (items, ["created_at"], ["desc"]).map(item => (
       <DialogItem
+      onSelect={onSelectDialog}
       key={item._id}
       isMe={item.user._id === userId}
+      currentDialogId={currentDialogId}
       {...item}
       />
       
-    ))}
+    )): <div className="dialogs__empty">Ничего не найдено</div>}
   </div>
 
 );
